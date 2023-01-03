@@ -23,22 +23,15 @@ bl_info = {
 }
 
 import bpy
-from bpy.props import PointerProperty
+from . createNewProjectDialog import BVC_OT_NewProject
+from . versionControlPanel import BVC_PT_Panel
 
-from . bvc_op import BVC_OT_Create_New
-from . bvc_pnl import BVC_PT_Panel
-from . bvc_pnl import Properties
-
-classes = (BVC_OT_Create_New, BVC_PT_Panel, Properties)
+classes = (BVC_OT_NewProject, BVC_PT_Panel)
 
 def register():
     for c in classes:
         bpy.utils.register_class(c)
 
-    bpy.types.Scene.my_tool = PointerProperty(type=Properties)
-
 def unregister():
     for c in classes:
         bpy.utils.unregister_class(c)
-
-    del bpy.types.Scene.my_tool
